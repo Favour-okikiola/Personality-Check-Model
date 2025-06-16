@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personality Check </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:rgb(254, 155, 5);
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color:rgb(255, 162, 2);
+        }
+        .prediction {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Personality Check</h2>
+        <form method="POST" action="/predict">
+            <!---Time_spent_Alone--->
+            <label>For how many hours are you comfortable being alone? (0H–11H) </label>
+            <input type="number" name="Time_spent_Alone" required>
+
+            <!---Stage_fear--->
+            <label>Do you get nervous speaking in front of people? </label>
+            <select name="Stage_fear" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <!---Social_event_attendance--->
+            <label>Frequency (scale 0-10) of attending social events. </label>
+            <input type="number" name="Social_event_attendance" required>
+
+            <!---Going_outside--->
+            <label>How often do you even go outside in a week? (0-7) </label>
+            <input type="number" name="Going_outside" required>
+            
+            <!---Drained_after_socializing--->
+            <label>Do you feels drained after socializing?</label>
+            <select name="Drained_after_socializing" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <!---Friends_circle_size--->
+            <label>What is the number of your close friends(0-15)</label>
+            <input type="number" name="Friends_circle_size" required>
+            
+            <!---Post_frequency--->
+            <label>Frequency of posting on social media(0-10)</label>
+            <input type="number" name="Post_frequency" required>
+
+            <!---prediction button--->
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+        <div class="prediction">
+            <strong>Prediction:</strong> {{ prediction }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

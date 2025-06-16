@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personality Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Personality Type Predictor</h1>
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label>Time Spent Alone (hours):</label>
+                <input type="number" step="any" name="Time_spent_Alone" required>
+            </div>
+
+            <div class="form-group">
+                <label>Stage Fear (Yes/No):</label>
+                <select name="Stage_fear" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Social Event Attendance (per week):</label>
+                <input type="number" step="any" name="Social_event_attendance" required>
+            </div>
+
+            <div class="form-group">
+                <label>Going Outside (times per week):</label>
+                <input type="number" step="any" name="Going_outside" required>
+            </div>
+
+            <div class="form-group">
+                <label>Drained After Socializing (Yes/No):</label>
+                <select name="Drained_after_socializing" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Friends Circle Size:</label>
+                <input type="number" step="any" name="Friends_circle_size" required>
+            </div>
+
+            <div class="form-group">
+                <label>Post Frequency (posts/week):</label>
+                <input type="number" step="any" name="Post_frequency" required>
+            </div>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result">{{ prediction }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
